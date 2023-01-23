@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css" />
+    <script src="https://js.cx/libs/animate.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./button.js"></script>
+</head>
+<body>
+
+<div class="form">
+    <a sec:authorize="!hasAuthority('ADMIN')" href="/buyings"><button class="user-button">За покупками</button></a>
+    <a sec:authorize="!isAuthenticated()" href="/sign-up"><button class="user-button">Зареєструватися</button></a>
+    <a sec:authorize="!isAuthenticated()" href="/login"><button class="user-button">Увійти</button></a>
+    <a sec:authorize="isAuthenticated()" href="/logout" class="user-button">Вийти</a>
+    <a sec:authorize="hasAuthority('ADMIN')" href="/current-orders" class="user-button">Замовлення</a>
+    <a sec:authorize="hasAuthority('ADMIN')" href="/admin-add"><button class="admin-button">Додати товар</button></a>
+    <a sec:authorize="isAuthenticated()" sec:authentication="name" class="user-button"> </a>
+</div>
+
+<div class="container" sec:authorize="!hasAuthority('ADMIN')">
+    <img src="/photo1.png" class="text-center">
+    <h6 class="h5">Вітаємо на сайті!</h6>
+    <div class="product1">
+        <h5 class="h5-txt">Одяг</h5>
+        <img src="/photo2.jpg">
+    </div>
+    <div class="product2">
+        <h5 class="h5-txt">Аксесуари</h5>
+        <img src="/photo3.png">
+    </div>
+    <div class="product1">
+        <h5 class="h5-txt">Взуття</h5>
+        <img src="/photo4.png">
+    </div>
+</div>
+</body>
+<footer>
+    <div id="path">
+        <div id="brick"></div>
+    </div>
+
+    <script>
+        function makeEaseOut(timing) {
+            return function(timeFraction) {
+                return 1 - timing(1 - timeFraction);
+            }
+        }
+
+        function bounce(timeFraction) {
+            for (let a = 0, b = 1; 1; a += b, b /= 2) {
+                if (timeFraction >= (7 - 4 * a) / 11) {
+                    return -Math.pow((11 - 6 * a - 11 * timeFraction) / 4, 2) + Math.pow(b, 2)
+                }
+            }
+        }
+
+        let bounceEaseOut = makeEaseOut(bounce);
+
+        brick.onclick = function() {
+            animate({
+                duration: 3000,
+                timing: bounceEaseOut,
+                draw: function(progress) {
+                    brick.style.left = progress * 1419 + 'px';
+                }
+            });
+        };
+    </script>
+
+    <div class="container-contact">
+        <p> <b>Контакти:</b> <br> e-mail: online_shop@gmail.com <br> телефон: +380951234567</p>
+    </div>
+</footer>
+</html>
