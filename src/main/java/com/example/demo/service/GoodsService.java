@@ -15,10 +15,16 @@ public class GoodsService {
     }
 
     @Transactional
-    public boolean addGoods(String goodsName, Integer goodsPrise, String aboutGoods){
-        Goods goods = new Goods(goodsName, goodsPrise, aboutGoods);
+    public boolean addGoodsToDB(String goodsName, Integer goodsPrise, String aboutGoods
+            //, byte [] photoGoods
+            , String decodedPhoto){
+        Goods goods = new Goods(goodsName, goodsPrise, aboutGoods
+                //, photoGoods
+                ,decodedPhoto);
         goodsRepository.save(goods);
         return true;
     }
+
+
 
 }

@@ -1,7 +1,11 @@
 package com.example.demo.configs;
 
+import com.example.demo.model.UserRole;
 import com.example.demo.repository.GoodsRepository;
 import com.example.demo.repository.UserOrderRepository;
+import com.example.demo.service.GoodsService;
+import com.example.demo.service.UserService;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -31,8 +35,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addViewController("/logout");
     }
 
-    /*@Bean
-    public CommandLineRunner start(final UserService userService, final GoodsServise goodsServise,
+   @Bean
+    public CommandLineRunner start(final UserService userService, final GoodsService goodsService,
                                    final PasswordEncoder passwordEncoder) {
         return new CommandLineRunner() {
             @Override
@@ -43,9 +47,13 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 userService.addUser("user", "user", "0961471977",
                         "aaaddd@gmail.com",
                         passwordEncoder.encode("123456789"), UserRole.USER);
-                goodsService.addGoods("Sweater",5000, "Sweater made from good cotton");
-                goodsService.addGoods("Green Rabbit", 600, "Really well for your kid");
+                goodsService.addGoodsToDB("Sweater",5000, "Sweater made from good cotton", null
+                        //,null
+                        );
+                goodsService.addGoodsToDB("Green Rabbit", 600, "Really well for your kid", null
+                        //,null
+                        );
             }
         };
-    }*/
+    }
 }
