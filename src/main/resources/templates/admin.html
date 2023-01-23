@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/admin.css"/>
+    <script src="https://js.cx/libs/animate.js"></script>
+</head>
+<body>
+<div class="container">
+    <h5>Товари</h5>
+    <hr class="line">
+
+    <form action="/admin-add" method="POST" enctype="multipart/form-data">
+        Назва товару: <br/><input type="text" name="goodsName" value="" required minlength="3"/><br/>
+        Ціна товару: <br/><input type="number" name="goodsPrise" value="" required minlength="1"/><br/>
+        Опис товару: <br/><input type="text" name="aboutGoods" value="" required minlength="10"/><br/>
+        Фото товару: <br><input type="file" name="photoGoods" accept="image/png, image/jpeg"/><br/>
+        <button type="submit" class="btn btn-success"> Додати товар</button>
+        <br/>
+    </form>
+
+    <hr class="line">
+    <h5>Замовлення</h5>
+</div>
+</body>
+<footer>
+    <div id="path">
+        <div id="brick"></div>
+    </div>
+
+    <script>
+        function makeEaseOut(timing) {
+            return function (timeFraction) {
+                return 1 - timing(1 - timeFraction);
+            }
+        }
+
+        function bounce(timeFraction) {
+            for (let a = 0, b = 1; 1; a += b, b /= 2) {
+                if (timeFraction >= (7 - 4 * a) / 11) {
+                    return -Math.pow((11 - 6 * a - 11 * timeFraction) / 4, 2) + Math.pow(b, 2)
+                }
+            }
+        }
+
+        let bounceEaseOut = makeEaseOut(bounce);
+
+        brick.onclick = function () {
+            animate({
+                duration: 3000,
+                timing: bounceEaseOut,
+                draw: function (progress) {
+                    brick.style.left = progress * 1419 + 'px';
+                }
+            });
+        };
+    </script>
+
+    <div class="container-contact">
+        <p><b>Контакти:</b> <br> e-mail: online_shop@gmail.com <br> телефон: +380951234567</p>
+    </div>
+</footer>
+</html>

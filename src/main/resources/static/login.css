@@ -1,0 +1,150 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+    background: url(/static/background1.png);
+  }
+  
+  .container {
+    width: 50%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: url(/static/background1.png);
+    border-left: .5px solid rgb(85, 85, 85);
+    border-right: .5px solid rgb(85, 85, 85);
+    
+  }
+
+  
+  .container-form {
+    width: 75%;
+    height: 45%;
+    margin: 1rem auto;
+    padding: 1rem auto auto 1rem;
+    background: url(/static/background2.png) no-repeat center center fixed;
+    background-size: cover;
+    border-radius: 2%;
+  }
+  .container-form:hover {
+    cursor: pointer;
+    transition: background 1.5s ease-in-out ;
+    z-index: 1;
+    box-shadow: .5px 2px 4px 5px rgb(255, 255, 116);
+}
+
+  .form-header {
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: normal;
+  }
+  
+  .container-form p {
+    width: 40%;
+    padding-top: 2rem;
+  }
+  
+  .container-social-icon {
+    width: 63%;
+    margin: 1rem auto 1rem auto;
+    padding: 1rem 1rem 1rem 1rem;
+    background-color: rgb(255, 255, 255);
+    border-radius: 3%;
+  }
+  
+  .social-icon {
+    width: 3rem;
+    height: 3rem;
+    margin-left: 1.3rem;
+    float: left;
+    cursor: pointer;
+    background: url("sprite.png");
+  }
+
+  .container-contact {
+    width: 100%;
+    height: 15%;
+    margin: 0 auto;
+    display: flex;
+    background: rgb(222, 219, 209);
+  }
+
+  .container-contact p {
+    width: 40%;
+    padding-top: .5rem;
+    padding-left: 1rem;
+  }
+  
+  .social-icon-facebook {
+    background-position: -17px -17px;
+  }
+  
+  .social-icon-facebook:hover {
+    background-position: -17px -101px;
+  }
+  
+  .social-icon-pinterest {
+    background-position: -437px -17px;
+  }
+  
+  .social-icon-pinterest:hover {
+    background-position: -437px -101px;
+  }
+  
+  .social-icon-skype {
+    background-position: -605px -15px;
+  }
+  
+  .social-icon-skype:hover {
+    background-position: -605px -101px;
+  }
+  
+  .social-icon-twitter {
+    background-position: -688px -15px;
+  }
+  
+  .social-icon-twitter:hover {
+    background-position: -688px -101px;
+  }
+  
+  .social-icon-youtube {
+    background-position: -857px -17px;
+  }
+  
+  .social-icon-youtube:hover {
+    background-position: -857px -101px;
+  }
+  
+  .social-icon-google {
+    background-position: -269px -17px;
+  }
+  
+  .social-icon-google:hover {
+    background-position: -269px -101px;
+  }
+
+  @media screen and (max-width: 1000px) {
+    .container-form {
+      width: 70%;
+    }
+    .container-social-icon {
+      width: 70%;
+    }
+  }
+
+  #brick {
+    width: 100px;
+    height: 8px;
+    background: #ffcc74;
+    position: relative;
+    cursor: pointer;
+  }
+  
+  #path {
+    outline: 1px solid #797979;
+    width: 100%;
+    height: 8px;
+  }
