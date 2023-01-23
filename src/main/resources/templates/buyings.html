@@ -1,48 +1,73 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/buyings.css" />
+    <script src="https://js.cx/libs/animate.js"></script>
 </head>
-
-<header class="p-3 text-bg-dark">
-    <div class="container">
-        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
-            </a>
-
-            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="/" class="nav-link px-2 text-secondary">Home</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
-            </ul>
-
-            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
-            </form>
-
-            <div class="text-end">
-                <a sec:authorize="!isAuthenticated()" href="/login"><input type="button" value="Login" class="btn btn-outline-light me-2"> </a>
-                <a sec:authorize="isAuthenticated()" href="/logout"><input type="button" value="Logout" class="btn btn-outline-light me-2"> </a>
-                <a sec:authorize="isAnonymous()" href="/sign-up"><input type="button" value="Sign-up" class="btn btn-warning"></a>
-            </div>
-        </div>
-    </div>
-</header>
-
 <body>
-<div th:each="goods: ${all}" class="alert alert-info mt-2">
+<div class="container">
+    <h5 class="text-center">Ваш акаунт</h5>
+    <div class="button-container">
+        <a sec:authorize="!isAuthenticated()" href="/login"><button class="login-button">Увійти</button></a>
+        <a sec:authorize="!isAuthenticated()" href="/sign-up"><button class="sign-button">Зареєструватися</button></a>
+        <a href="/logout" sec:authorize="isAuthenticated()"><button class="login-button">Вийти</button></a>
+        <a sec:authorize="isAuthenticated()" sec:authentication="name" class="sign-button"> </a>
+    </div>
+    <hr class="line">
+    <h5 class="text-center">Товари</h5>
+
+    <div th:each="goods: ${all}" class="alert alert-info mt-2">
         <form action="/buyings-user" method="GET">
+            <img th:src="'data:image/png;base64,' + ${goods.decodedPhoto}" alt="Red dot">
             <h3 th:text="'Good name: ' + ${goods.goodsName}"/>
             <h3 th:text="'Good price: ' + ${goods.goodsPrise}"/>
             <h3 th:text="'About: ' + ${goods.aboutGoods}"/>
             <input type="hidden" name="goodsId" th:value="${goods.id}">
-            <button type="submit" class="btn btn-success">Buy this</button><br/>
-       </form>
+            <button type="submit" class="btn btn-success">Придбати</button><br/>
+        </form>
+    </div>
 
 </div>
 </body>
+<footer>
+    <div id="path">
+        <div id="brick"></div>
+    </div>
+
+    <script>
+        function makeEaseOut(timing) {
+            return function(timeFraction) {
+                return 1 - timing(1 - timeFraction);
+            }
+        }
+
+        function bounce(timeFraction) {
+            for (let a = 0, b = 1; 1; a += b, b /= 2) {
+                if (timeFraction >= (7 - 4 * a) / 11) {
+                    return -Math.pow((11 - 6 * a - 11 * timeFraction) / 4, 2) + Math.pow(b, 2)
+                }
+            }
+        }
+
+        let bounceEaseOut = makeEaseOut(bounce);
+
+        brick.onclick = function() {
+            animate({
+                duration: 3000,
+                timing: bounceEaseOut,
+                draw: function(progress) {
+                    brick.style.left = progress * 1419 + 'px';
+                }
+            });
+        };
+    </script>
+
+    <div class="container-contact">
+        <p> <b>Контакти:</b> <br> e-mail: online_shop@gmail.com <br> телефон: +380951234567</p>
+    </div>
+</footer>
 </html>
