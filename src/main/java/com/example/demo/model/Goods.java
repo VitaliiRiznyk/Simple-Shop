@@ -2,10 +2,8 @@ package com.example.demo.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
-import java.util.Base64;
 
 @Data
 @Entity
@@ -18,20 +16,18 @@ public class Goods {
     private Integer goodsPrise;
     private String aboutGoods;
 
-   /*@Column(nullable = true)
-    @Lob
-    private byte[] photoGoods;*/
+    @Enumerated(EnumType.STRING)
+    private GoodsRole goodsRole;
 
     @Column(length = 2_000_000)
     private String decodedPhoto;
 
-    public Goods(String goodsName, Integer goodsPrise, String aboutGoods//, byte[] photoGoods
-                 ,String decodedPhoto) {
+    public Goods(String goodsName, Integer goodsPrise, String aboutGoods, String decodedPhoto, GoodsRole goodsRole) {
         this.goodsName = goodsName;
         this.goodsPrise = goodsPrise;
         this.aboutGoods = aboutGoods;
-        //this.photoGoods = photoGoods;
         this.decodedPhoto = decodedPhoto;
+        this.goodsRole = goodsRole;
     }
 
 }

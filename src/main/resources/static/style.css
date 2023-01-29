@@ -1,7 +1,7 @@
 html, body {
     width: 100%;
     font-size: 16px;
-    background: url(background1.png) no-repeat fixed;
+    background: url(photos/background1.png) no-repeat fixed;
     overflow-x: hidden;
 }
 
@@ -11,7 +11,7 @@ html, body {
     padding-right: .1rem;
     display: flex;
     flex-direction: column;
-    background: url(background1.png) no-repeat fixed;
+    background: url(photos/background1.png) no-repeat fixed;
     border-left: .5px solid rgb(85, 85, 85);
     border-right: .5px solid rgb(85, 85, 85);
 }
@@ -143,16 +143,16 @@ html, body {
     outline: none;
     color: black;
     font-weight: 600;
-    background: url(background3.png) no-repeat;
+    background: url(photos/background3.png) no-repeat;
     border: none;
     border-radius: 15px;
     box-shadow: 0 5px #999;
 }
 
-.user-button:hover { background: url(background3.png) no-repeat}
+.user-button:hover { background: url(photos/background3.png) no-repeat}
 
 .user-button:active {
-    background: url(background3.png) no-repeat;
+    background: url(photos/background3.png) no-repeat;
     box-shadow: 0 1px #666;
     transform: translateY(4px);
 }
@@ -169,16 +169,16 @@ html, body {
     outline: none;
     color: black;
     font-weight: 600;
-    background: url(background3.png) no-repeat;
+    background: url(photos/background3.png) no-repeat;
     border: none;
     border-radius: 15px;
     box-shadow: 0 5px #999;
 }
 
-.admin-button:hover { background: url(background3.png) no-repeat}
+.admin-button:hover { background: url(photos/background3.png) no-repeat}
 
 .admin-button:active {
-    background: url(background3.png) no-repeat;
+    background: url(photos/background3.png) no-repeat;
     box-shadow: 0 1px #666;
     transform: translateY(4px);
 }

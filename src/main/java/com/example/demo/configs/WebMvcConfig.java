@@ -1,5 +1,6 @@
 package com.example.demo.configs;
 
+import com.example.demo.model.GoodsRole;
 import com.example.demo.model.UserRole;
 import com.example.demo.repository.GoodsRepository;
 import com.example.demo.repository.UserOrderRepository;
@@ -35,7 +36,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addViewController("/logout");
     }
 
-   @Bean
+   /*@Bean
     public CommandLineRunner start(final UserService userService, final GoodsService goodsService,
                                    final PasswordEncoder passwordEncoder) {
         return new CommandLineRunner() {
@@ -47,13 +48,10 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 userService.addUser("user", "user", "0961471977",
                         "aaaddd@gmail.com",
                         passwordEncoder.encode("123456789"), UserRole.USER);
-                goodsService.addGoodsToDB("Sweater",5000, "Sweater made from good cotton", null
-                        //,null
-                        );
-                goodsService.addGoodsToDB("Green Rabbit", 600, "Really well for your kid", null
-                        //,null
-                        );
+                goodsService.addGoodsToDB("Sweater", 5000, "Sweater made from good cotton", null, GoodsRole.valueOf("CLOTHES"));
+                goodsService.addGoodsToDB("Green Rabbit", 600, "Really well for your kid", null, GoodsRole.ACCESSORIES);
+                goodsService.addGoodsToDB("Sneakers", 2500, "New collection", null, GoodsRole.BOOTS);
             }
         };
-    }
+    }*/
 }

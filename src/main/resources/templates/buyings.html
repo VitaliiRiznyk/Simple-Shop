@@ -5,31 +5,55 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/buyings.css" />
+    <link rel="stylesheet" href="/buyings.css"/>
     <script src="https://js.cx/libs/animate.js"></script>
 </head>
 <body>
 <div class="container">
     <h5 class="text-center">Ваш акаунт</h5>
     <div class="button-container">
-        <a sec:authorize="!isAuthenticated()" href="/login"><button class="login-button">Увійти</button></a>
-        <a sec:authorize="!isAuthenticated()" href="/sign-up"><button class="sign-button">Зареєструватися</button></a>
-        <a href="/logout" sec:authorize="isAuthenticated()"><button class="login-button">Вийти</button></a>
+        <a sec:authorize="!isAuthenticated()" href="/login">
+            <button class="login-button">Увійти</button>
+        </a>
+        <a sec:authorize="!isAuthenticated()" href="/sign-up">
+            <button class="sign-button">Зареєструватися</button>
+        </a>
+        <a href="/logout" sec:authorize="isAuthenticated()">
+            <button class="login-button">Вийти</button>
+        </a>
         <a sec:authorize="isAuthenticated()" sec:authentication="name" class="sign-button"> </a>
     </div>
     <hr class="line">
     <h5 class="text-center">Товари</h5>
 
-    <div th:each="goods: ${all}" class="alert alert-info mt-2">
+    <div th:each="goods: ${all}" class="alert alert-info mt-2" sec:authorize="!hasAuthority('ADMIN')">
+        <!-- додано код -->
         <form action="/buyings-user" method="GET">
-            <img th:src="'data:image/png;base64,' + ${goods.decodedPhoto}" alt="Red dot">
+            <img th:src="'data:image/png;base64,' + ${goods.decodedPhoto}" th:if="${goods.decodedPhoto !=null}"
+                 alt="Red dot">
             <h3 th:text="'Good name: ' + ${goods.goodsName}"/>
             <h3 th:text="'Good price: ' + ${goods.goodsPrise}"/>
             <h3 th:text="'About: ' + ${goods.aboutGoods}"/>
             <input type="hidden" name="goodsId" th:value="${goods.id}">
-            <button type="submit" class="btn btn-success">Придбати</button><br/>
+            <button type="submit" class="btn btn-success">Придбати</button>
+            <br/>
         </form>
     </div>
+
+    <div th:each="goods: ${all}" class="alert alert-info mt-2" sec:authorize="hasAuthority('ADMIN')">
+        <!-- додано код -->
+        <form action="/admin-goods" method="post">
+            <img th:src="'data:image/png;base64,' + ${goods.decodedPhoto}" th:if="${goods.decodedPhoto !=null}"
+                 alt="Red dot">
+            <h3 th:text="'Good name: ' + ${goods.goodsName}"/>
+            <h3 th:text="'Good price: ' + ${goods.goodsPrise}"/>
+            <h3 th:text="'About: ' + ${goods.aboutGoods}"/>
+            <input type="hidden" name="goodsId" th:value="${goods.id}">
+            <button type="submit" class="btn btn-success">Видалити даний товар</button>
+            <br/>
+        </form>
+    </div>
+
 
 </div>
 </body>
@@ -40,7 +64,7 @@
 
     <script>
         function makeEaseOut(timing) {
-            return function(timeFraction) {
+            return function (timeFraction) {
                 return 1 - timing(1 - timeFraction);
             }
         }
@@ -55,11 +79,11 @@
 
         let bounceEaseOut = makeEaseOut(bounce);
 
-        brick.onclick = function() {
+        brick.onclick = function () {
             animate({
                 duration: 3000,
                 timing: bounceEaseOut,
-                draw: function(progress) {
+                draw: function (progress) {
                     brick.style.left = progress * 1419 + 'px';
                 }
             });
@@ -67,7 +91,7 @@
     </script>
 
     <div class="container-contact">
-        <p> <b>Контакти:</b> <br> e-mail: online_shop@gmail.com <br> телефон: +380951234567</p>
+        <p><b>Контакти:</b> <br> e-mail: online_shop@gmail.com <br> телефон: +380951234567</p>
     </div>
 </footer>
 </html>

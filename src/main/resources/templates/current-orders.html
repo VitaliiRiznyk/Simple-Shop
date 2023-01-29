@@ -14,21 +14,23 @@
 
 <div class="form">
     <a sec:authorize="isAuthenticated()" href="/logout" class="user-button">Вийти</a>
-    <a sec:authorize="hasAuthority('ADMIN')" href="/current-orders" class="user-button">Замовлення</a>
+    <a sec:authorize="hasAuthority('ADMIN')" href="/" class="user-button">Повернутися</a>
     <a sec:authorize="isAuthenticated()" sec:authentication="name" class="user-button"> </a>
 </div>
 
 <h6 class="h5">Актуальні замовлення</h6>
 <div th:each="goodsOrdered: ${orders}" class="alert alert-info mt-2">
-    <form action="/successOrder" method="POST">
+    <form method="POST">
         <h3 th:text="'Назва товару: ' + ${goodsOrdered.goods.goodsName}"/>
         <h3 th:text="'Ім’я користувача: ' + ${goodsOrdered.customUser.userName}"/>
         <h3 th:text="'Номер телефону користувача: ' + ${goodsOrdered.customUser.userPhone}"/>
         <h3 th:text="'Кількість замовлення: ' + ${goodsOrdered.orderQuantity}"/>
         <h3 th:text="'Деталі замовлення: ' + ${goodsOrdered.orderDetails}"/>
+        <h3 th:text="'Сума замовлення: ' + ${goodsOrdered.orderSummaryPrice}"/>
         <h3 th:text="'Адреса доставки: ' + ${goodsOrdered.addressOrder}"/>
         <input type="hidden" name="id" th:value="${goodsOrdered.id}">
-        <button type="submit" class="btn btn-success">Доставлене замовлення</button>
+        <button formaction="/successOrder" type="submit" class="btn btn-success">Доставлене замовлення</button>
+        <button formaction="/declinedOrder" type="submit" class="btn btn-success">Повернене замовлення</button>
         <br/>
     </form>
 </div>

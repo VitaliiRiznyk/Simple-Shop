@@ -16,13 +16,14 @@
         Назва товару: <br/><input type="text" name="goodsName" value="" required minlength="3"/><br/>
         Ціна товару: <br/><input type="number" name="goodsPrise" value="" required minlength="1"/><br/>
         Опис товару: <br/><input type="text" name="aboutGoods" value="" required minlength="10"/><br/>
+        Класифікація товару: <br/><select name="goodsRole">
+        <option value="CLOTHES">Одяг</option>
+        <option value="ACCESSORIES">Аксесуари</option>
+        <option value="BOOTS">Взуття</option> </select><br/>
         Фото товару: <br><input type="file" name="photoGoods" accept="image/png, image/jpeg"/><br/>
         <button type="submit" class="btn btn-success"> Додати товар</button>
         <br/>
     </form>
-
-    <hr class="line">
-    <h5>Замовлення</h5>
 </div>
 </body>
 <footer>

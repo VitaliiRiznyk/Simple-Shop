@@ -4,12 +4,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Data
 @Entity
 @NoArgsConstructor
-public class CustomUser { // this is to show order details
+public class CustomUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

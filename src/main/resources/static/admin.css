@@ -1,7 +1,7 @@
 html, body {
     width: 100%;
     font-size: 16px;
-    background: url(background1.png) no-repeat fixed;
+    background: url(photos/background1.png) no-repeat fixed;
     overflow-x: hidden;
   }
 
@@ -12,7 +12,7 @@ html, body {
  padding-right: .1rem;
  display: flex;
  flex-direction: column;
- background: url(background1.png) no-repeat fixed;
+ background: url(photos/background1.png) no-repeat fixed;
  border-left: .5px solid rgb(85, 85, 85);
  border-right: .5px solid rgb(85, 85, 85);
 }
